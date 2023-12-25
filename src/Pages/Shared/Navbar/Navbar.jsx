@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import './navStyle.css'
 
 const Navbar = () => {
   const navOptions = (
@@ -7,6 +8,18 @@ const Navbar = () => {
         <NavLink to={'/'}>Home</NavLink>
       </li>
       <li>
+        <NavLink to={'/contactUs'}>Contact Us</NavLink>
+      </li>
+      <li>
+        <NavLink to={'/dashboard'}>DASHBOARD</NavLink>
+      </li>
+      <li>
+        <NavLink to={'/ourMenu'}>Our Menu</NavLink>
+      </li>
+      <li>
+        <NavLink to={'/ourShop'}>Our Shop</NavLink>
+      </li>
+      {/* <li>
         <details>
           <summary>Parent</summary>
           <ul className="p-2">
@@ -18,15 +31,13 @@ const Navbar = () => {
             </li>
           </ul>
         </details>
-      </li>
-      <li>
-        <NavLink to={''}>Item 3</NavLink>
-      </li>
+      </li> */}
+     
     </>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar fixed z-30 bg-opacity-30 text-white font-bold bg-black max-w-7xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,12 +58,12 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-400 rounded-box w-52 uppercase bg-blac"
           >
             {navOptions}
           </ul>
         </div>
-        <div className="btn btn-ghost text-xl">
+        <div className="btn  btn-ghost text-xl">
           <Link to={"/"} className=" flex flex-col uppercase">
             <p className="font-extrabold">Bistro Boos </p>
             <p
@@ -66,7 +77,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navOptions}</ul>
+        <ul className="menu menu-horizontal px-1 uppercase">{navOptions}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>
