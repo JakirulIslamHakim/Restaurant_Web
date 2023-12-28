@@ -21,7 +21,6 @@ const Testimonials = () => {
       });
   }, []);
 
-//   added section menuitem, category , featured ,popular  and testimonials  
 
   return (
     <div className=" py-3">

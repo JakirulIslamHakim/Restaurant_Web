@@ -1,13 +1,3 @@
 .featured-container {
   background-image: url("../../../assets/home/featured.jpg");
-  --tw-bg-opacity: 1;
-  --tw-bg-opacity: 0.4;
-  /* background-color: black; */
-  /* background: linear-gradient(
-        0deg,
-        rgba(21, 21, 21, 0.7) 0%,
-        rgba(21, 21, 21, 0.7) 100%
-      )
-      url('../../../assets/home/featured.jpg'),
-    lightgray 50%; */
 }
