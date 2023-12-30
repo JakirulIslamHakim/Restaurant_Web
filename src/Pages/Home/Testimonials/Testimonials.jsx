@@ -14,13 +14,12 @@ const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("/public/reviews.json")
+    fetch("http://localhost:5000/api/v1/client_review")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
       });
   }, []);
-
 
   return (
     <div className=" py-3">
@@ -30,7 +29,7 @@ const Testimonials = () => {
       ></SectionTitle>
       <div>
         <div className="text-6xl flex justify-center">
-          <FaCommentDots  />
+          <FaCommentDots />
         </div>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           {reviews.map((item) => (
@@ -47,15 +46,6 @@ const Testimonials = () => {
               </div>
             </SwiperSlide>
           ))}
-          {/* <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide> */}
         </Swiper>
       </div>
     </div>

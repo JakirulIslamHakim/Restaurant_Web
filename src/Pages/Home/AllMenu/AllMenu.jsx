@@ -17,7 +17,7 @@ const AllMenu = () => {
   return (
     <div className="py-24">
         <Helmet>
-            <title>Bistro Boss | All Menu</title>
+            <title>Bistro Boss | Full Menu</title>
         </Helmet>
       <SectionTitle
         heading={"Check it out"}

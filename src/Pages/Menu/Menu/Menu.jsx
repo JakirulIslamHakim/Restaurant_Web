@@ -8,15 +8,10 @@ import SectionTitle from "../../../Component/SectionTitle/SectionTitle";
 import dessertImg from "../../../assets/menu/dessert-bg.jpeg";
 import pizzaImg from "../../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../../assets/menu/salad-bg.jpg";
-import souptImg from "../../../assets/menu/soup-bg.jpg";
+import soupImg from "../../../assets/menu/soup-bg.jpg";
 
 const Menu = () => {
-  const [menu] = useMenu();
-  const todaysOffered = menu.filter((items) => items.category === "offered");
-  const dessert = menu.filter((items) => items.category === "dessert");
-  const pizza = menu.filter((items) => items.category === "pizza");
-  const salad = menu.filter((items) => items.category === "salad");
-  const soup = menu.filter((items) => items.category === "soup");
+  const [menu, isLoading, todaysOffered, dessert, pizza, salad, soup] = useMenu();
 
   return (
     <div className="space-y-12 mb-10">
@@ -32,30 +27,38 @@ const Menu = () => {
         heading={"Don't miss"}
         subHeading={"TODAY'S OFFER"}
       ></SectionTitle>
-      <MenuCategory items={todaysOffered}></MenuCategory>
+      <MenuCategory heading={"todayOffer"} items={todaysOffered}></MenuCategory>
       <MenuCategory
-        items={todaysOffered}
-        heading={"DESSERTS"}
+        items={dessert}
+        heading={"desserts"}
         subHeading={
           "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         }
         img={dessertImg}
       ></MenuCategory>
       <MenuCategory
-        items={todaysOffered}
-        heading={"PIZZA"}
+        items={pizza}
+        heading={"pizza"}
         subHeading={
           "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         }
         img={pizzaImg}
       ></MenuCategory>
       <MenuCategory
-        items={todaysOffered}
-        heading={"soup"}
+        items={salad}
+        heading={"salads"}
         subHeading={
           "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         }
-        img={souptImg}
+        img={saladImg}
+      ></MenuCategory>
+      <MenuCategory
+        items={soup}
+        heading={"soups"}
+        subHeading={
+          "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        }
+        img={soupImg}
       ></MenuCategory>
     </div>
   );
