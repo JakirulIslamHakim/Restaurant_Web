@@ -1,25 +1,45 @@
 import { Link, NavLink } from "react-router-dom";
-import './navStyle.css'
+import "./navStyle.css";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout()
+      .then()
+      .catch((err) => console.log(err));
+  };
+
   const navOptions = (
     <>
       <li>
-        <NavLink to={'/'}>Home</NavLink>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={'/contactUs'}>Contact Us</NavLink>
+        <NavLink to={"/contactUs"}>Contact Us</NavLink>
       </li>
       <li>
-        <NavLink to={'/dashboard'}>DASHBOARD</NavLink>
+        <NavLink to={"/dashboard"}>DASHBOARD</NavLink>
       </li>
       <li>
-        <NavLink to={'/ourMenu'}>Our Menu</NavLink>
+        <NavLink to={"/ourMenu"}>Our Menu</NavLink>
       </li>
       <li>
-        <NavLink to={'/ourShop/salads'}>Our Shop</NavLink>
+        <NavLink to={"/ourShop/salads"}>Our Shop</NavLink>
       </li>
-      
+      {user ? (
+        <>
+          <li onClick={handleLogout} className="btn btn-ghost">
+            Logout
+          </li>
+        </>
+      ) : (
+        <li>
+          <NavLink to={"/login"}>Login</NavLink>
+        </li>
+      )}
+
       {/* <li>
         <details>
           <summary>Parent</summary>
@@ -33,7 +53,6 @@ const Navbar = () => {
           </ul>
         </details>
       </li> */}
-     
     </>
   );
 
@@ -59,7 +78,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-400 rounded-box w-52 uppercase bg-blac"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-400 rounded-box w-52 uppercase "
           >
             {navOptions}
           </ul>
@@ -78,7 +97,9 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 uppercase">{navOptions}</ul>
+        <ul className="menu menu-horizontal px-1 uppercase flex items-center">
+          {navOptions}
+        </ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>

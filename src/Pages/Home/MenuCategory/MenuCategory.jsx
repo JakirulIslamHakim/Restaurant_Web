@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import PrimaryBtn from "../../../Component/Butten/PrimaryBtn";
 import MenuItem from "../../../Component/MenuItem/MenuItem";
 import SectionCover from "../../../Component/SectionCover/SectionCover";
 
