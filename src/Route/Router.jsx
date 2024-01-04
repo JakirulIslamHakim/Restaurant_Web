@@ -6,6 +6,8 @@ import AllMenu from "../Pages/Home/AllMenu/AllMenu";
 import OurShop from "../Pages/OurSHop/OurShop/OurShop";
 import Login from "../Pages/Login/Login";
 import SingUp from "../Pages/SingUp/SIngup";
+import Secret from "../Component/SecretTest/Secret";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +38,10 @@ export const router = createBrowserRouter([
         path: "singUp",
         element: <SingUp></SingUp>,
       },
+      {
+        path:'secret',
+        element:<PrivateRoute><Secret></Secret></PrivateRoute>
+      }
     ],
   },
 ]);

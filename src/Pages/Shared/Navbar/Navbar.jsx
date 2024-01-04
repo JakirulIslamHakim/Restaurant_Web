@@ -13,24 +13,27 @@ const Navbar = () => {
 
   const navOptions = (
     <>
-      <li>
+      <li className="btn btn-ghost p-0">
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      <li>
+      <li className="btn btn-ghost p-0">
         <NavLink to={"/contactUs"}>Contact Us</NavLink>
       </li>
-      <li>
+      <li className="btn btn-ghost p-0">
         <NavLink to={"/dashboard"}>DASHBOARD</NavLink>
       </li>
-      <li>
+      <li className="btn btn-ghost p-0">
         <NavLink to={"/ourMenu"}>Our Menu</NavLink>
       </li>
-      <li>
+      <li className="btn btn-ghost p-0">
+        <NavLink to={"/secret"}>Secret</NavLink>
+      </li>
+      <li className="btn btn-ghost p-0">
         <NavLink to={"/ourShop/salads"}>Our Shop</NavLink>
       </li>
       {user ? (
         <>
-          <li onClick={handleLogout} className="btn btn-ghost">
+          <li onClick={handleLogout} className="btn btn-ghost p-0">
             Logout
           </li>
         </>
@@ -97,7 +100,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 uppercase flex items-center">
+        <ul className="menu menu-horizontal px-1 uppercase flex items-center gap-0">
           {navOptions}
         </ul>
       </div>

@@ -1,7 +1,7 @@
 import loginImg from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -16,11 +16,13 @@ import Swal from "sweetalert2";
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { loginUser } = useAuth();
+  const location = useLocation();
+  const goTo = location?.state?.form?.pathname || "/";
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -30,6 +32,7 @@ const Login = () => {
         if (result.user) {
           Swal.fire("Login successfully");
           reset();
+          navigate(goTo, { replace: true });
         }
       })
       .catch((err) => {
@@ -60,8 +63,7 @@ const Login = () => {
 
   const HandleCaptchaValidate = (e) => {
     const captchaValue = e.target.value;
-    console.log(captchaValue);
-    // console.log(captchaValue);
+
     if (validateCaptcha(captchaValue) == true) {
       setDisabled(false);
     } else {
