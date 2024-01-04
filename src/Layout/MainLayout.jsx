@@ -5,14 +5,14 @@ import Footer from "../Pages/Shared/Footer/Footer";
 const MainLayout = () => {
   const location = useLocation();
   const currentLocation = location.pathname;
-  const hideNavbar = currentLocation.includes("login");
-  const hideFooter = currentLocation.includes("singUp");
+  const hideNavFooter =
+    currentLocation.includes("login") || currentLocation.includes("singUp");
 
   return (
     <div className="max-w-7xl mx-auto">
-      {hideNavbar || hideFooter || <Navbar></Navbar>}
+      {hideNavFooter || <Navbar></Navbar>}
       <Outlet></Outlet>
-      {hideNavbar || hideFooter || <Footer></Footer>}
+      {hideNavFooter || <Footer></Footer>}
     </div>
   );
 };

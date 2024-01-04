@@ -1,13 +1,17 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./navStyle.css";
 import useAuth from "../../../hooks/useAuth";
+import { FaCartPlus } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout()
-      .then()
+      .then(() => {
+        navigate("/", { replace: true });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -31,14 +35,22 @@ const Navbar = () => {
       <li className="btn btn-ghost p-0">
         <NavLink to={"/ourShop/salads"}>Our Shop</NavLink>
       </li>
+      <li className="btn btn-ghost p-0">
+        <button>
+          <FaCartPlus className="text-2xl text-green-700 " />
+          <sub className="badge badge-secondary -ml-3 text-sm mt-4 bg-red-700  ">
+            +0
+          </sub>
+        </button>
+      </li>
       {user ? (
         <>
           <li onClick={handleLogout} className="btn btn-ghost p-0">
-            Logout
+            <> Logout</>
           </li>
         </>
       ) : (
-        <li>
+        <li className="btn btn-ghost p-0">
           <NavLink to={"/login"}>Login</NavLink>
         </li>
       )}
@@ -105,7 +117,12 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <div className="avatar">
+          <div className="w-16 rounded-full">
+            <img src={user ? user.photoURL : ""} />
+          </div>
+        </div>
+        <p>{user?.displayName}</p>
       </div>
     </div>
   );

@@ -142,7 +142,7 @@ const Login = () => {
                 </div>
                 <div className="form-control mt-6">
                   <button
-                    disabled={disabled}
+                    // disabled={disabled}
                     className="btn btn-primary text-base font-bold border-none bg-[#d19f54b5]  hover:bg-[#D1A054]"
                   >
                     Sing In

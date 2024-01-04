@@ -1,6 +1,6 @@
 import singUp from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./singup.css";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -8,24 +8,32 @@ import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const SingUp = () => {
-  const { createUser } = useAuth();
+  const { createUser, profileUpdate } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
-        Swal.fire({
-          // title: "The Internet?",
-          text: "Created account successfully",
-          icon: "success"
-        });
-        reset();
+        profileUpdate(data.name, data.photoUrl)
+          .then(() => {
+            console.log("user create and update profile");
+            console.log(result.user);
+            Swal.fire({
+              // title: "The Internet?",
+              text: "Created account successfully",
+              icon: "success",
+            });
+            reset();
+            navigate("/", { replace: true });
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
@@ -76,6 +84,21 @@ const SingUp = () => {
                 </div>
                 {errors.name && (
                   <span className="text-red-500">Name is required</span>
+                )}
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Photo Url</span>
+                  </label>
+                  <input
+                    type="url"
+                    name="photoUrl"
+                    placeholder="Photo Url"
+                    className="input input-bordered"
+                    {...register("photoUrl", { required: true })}
+                  />
+                </div>
+                {errors.photoUrl && (
+                  <span className="text-red-500">Photo url is required</span>
                 )}
                 <div className="form-control">
                   <label className="label">
