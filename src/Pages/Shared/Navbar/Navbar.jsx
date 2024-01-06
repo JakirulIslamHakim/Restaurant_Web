@@ -2,10 +2,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./navStyle.css";
 import useAuth from "../../../hooks/useAuth";
 import { FaCartPlus } from "react-icons/fa";
+import useCartDate from "../../../hooks/useCartDate";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [carts] = useCartDate();
+  console.log(carts);
 
   const handleLogout = () => {
     logout()
@@ -36,12 +39,12 @@ const Navbar = () => {
         <NavLink to={"/ourShop/salads"}>Our Shop</NavLink>
       </li>
       <li className="btn btn-ghost p-0">
-        <button>
+        <NavLink to={"/dashboard/cart"}>
           <FaCartPlus className="text-2xl text-green-700 " />
           <sub className="badge badge-secondary -ml-3 text-sm mt-4 bg-red-700  ">
-            +0
+            +{carts.length}
           </sub>
-        </button>
+        </NavLink>
       </li>
       {user ? (
         <>
@@ -98,8 +101,8 @@ const Navbar = () => {
             {navOptions}
           </ul>
         </div>
-        <div className="btn  btn-ghost text-xl">
-          <Link to={"/"} className=" flex flex-col uppercase">
+        <div className="btn  btn-ghost text-2xl">
+          <Link to={"/"} className=" flex flex-col uppercase ">
             <p className="font-extrabold">Bistro Boos </p>
             <p
               style={{ letterSpacing: "9px" }}

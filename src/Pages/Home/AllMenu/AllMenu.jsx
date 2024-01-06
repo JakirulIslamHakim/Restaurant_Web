@@ -2,14 +2,15 @@ import { Helmet } from "react-helmet-async";
 import MenuItem from "../../../Component/MenuItem/MenuItem";
 import SectionTitle from "../../../Component/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu/useMenu";
+import { RingLoader } from "react-spinners";
 
 const AllMenu = () => {
   const [menu, isLoading] = useMenu();
 
   if (isLoading) {
     return (
-      <div>
-        <p className="text-center font-bold text-xl">Loading.....</p>
+      <div className="flex justify-center items-center h-screen">
+        <RingLoader loading={true} color={"#36D7B7"}></RingLoader>
       </div>
     );
   }
