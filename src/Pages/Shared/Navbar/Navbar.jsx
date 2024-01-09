@@ -27,7 +27,7 @@ const Navbar = () => {
         <NavLink to={"/contactUs"}>Contact Us</NavLink>
       </li>
       <li className="btn btn-ghost p-0">
-        <NavLink to={"/dashboard"}>DASHBOARD</NavLink>
+        <NavLink to={"/dashboard/userHome"}>DASHBOARD</NavLink>
       </li>
       <li className="btn btn-ghost p-0">
         <NavLink to={"/ourMenu"}>Our Menu</NavLink>

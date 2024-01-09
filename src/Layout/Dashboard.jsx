@@ -24,7 +24,7 @@ const Dashboard = () => {
             </p>
           </Link>
         </div>
-        <div className="font-medium space-y-6 p-4 uppercase ">
+        <div className="font-medium space-y-6 p-4 uppercase  ">
           <p>
             <NavLink
               className="flex gap-2 items-center hover:text-white"
@@ -35,13 +35,19 @@ const Dashboard = () => {
             </NavLink>
           </p>
           <p>
-            <NavLink className="flex gap-2 items-center hover:text-white">
+            <NavLink
+              to={"/dashboard/reservation"}
+              className="flex gap-2 items-center hover:text-white"
+            >
               <FaCalendarAlt className="text-2xl" />
               reservation
             </NavLink>
           </p>
           <p>
-            <NavLink className="flex gap-2 items-center hover:text-white">
+            <NavLink
+              to={"/dashboard/paymentHistory"}
+              className="flex gap-2 items-center hover:text-white"
+            >
               <IoWalletSharp className="text-2xl" />
               payment history
             </NavLink>
@@ -56,13 +62,19 @@ const Dashboard = () => {
             </NavLink>
           </p>
           <p>
-            <NavLink className="flex gap-2 items-center hover:text-white">
+            <NavLink
+              to={"/dashboard/addReview"}
+              className="flex gap-2 items-center hover:text-white"
+            >
               <FaRegGrinStars className="text-2xl" />
               add review
             </NavLink>
           </p>
           <p>
-            <NavLink className="flex gap-2 items-center hover:text-white">
+            <NavLink
+              to={"/dashboard/myBooking"}
+              className="flex gap-2 items-center hover:text-white"
+            >
               <IoBookmark className="text-2xl" />
               my booking
             </NavLink>
@@ -70,25 +82,25 @@ const Dashboard = () => {
         </div>
         <hr className="my-6" />
         <div className="font-medium space-y-6 p-4 uppercase">
-          <p className="flex gap-2 items-center">
+          <p className="flex gap-2 items-center hover:text-white">
             <AiFillHome className="text-2xl" />
             <NavLink to={"/"}>Home</NavLink>
           </p>
-          <p className="flex gap-2 items-center">
+          <p className="flex gap-2 items-center hover:text-white">
             <IoMenu className="text-2xl" />
             <NavLink to={"/ourMenu"}>Menu</NavLink>
           </p>
-          <p className="flex gap-2 items-center">
+          <p className="flex gap-2 items-center hover:text-white">
             <FaShoppingBag className="text-2xl" />
             <NavLink to={"/ourShop/salad"}>Shop</NavLink>
           </p>
-          <p className="flex gap-2 items-center">
+          <p className="flex gap-2 items-center hover:text-white">
             <IoMailSharp className="text-2xl" />
             <NavLink to={"/contact"}>Contact</NavLink>
           </p>
         </div>
       </div>
-      <div className="flex-1  px-7 py-10 ">
+      <div className="flex-1 ">
         <Outlet></Outlet>
       </div>
     </div>
