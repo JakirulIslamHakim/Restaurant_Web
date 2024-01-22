@@ -8,7 +8,6 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [carts] = useCartDate();
-  console.log(carts);
 
   const handleLogout = () => {
     logout()
@@ -120,11 +119,13 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <div className="avatar">
-          <div className="w-16 rounded-full">
-            <img src={user ? user.photoURL : ""} />
+        {user && (
+          <div className="avatar">
+            <div className="w-16 rounded-full">
+              <img src={user && user.photoURL} alt="Profile" />
+            </div>
           </div>
-        </div>
+        )}
         <p>{user?.displayName}</p>
       </div>
     </div>

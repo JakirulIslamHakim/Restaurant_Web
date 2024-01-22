@@ -6,9 +6,12 @@ import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../Component/SocialLogin/SocialLogin";
 
 const SingUp = () => {
   const { createUser, profileUpdate } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -17,25 +20,29 @@ const SingUp = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password)
-      .then((result) => {
-        profileUpdate(data.name, data.photoUrl)
-          .then(() => {
-            console.log("user create and update profile");
-            console.log(result.user);
-            Swal.fire({
-              // title: "The Internet?",
-              text: "Created account successfully",
-              icon: "success",
-            });
-            reset();
-            navigate("/", { replace: true });
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
+  const onSubmit = async (data) => {
+    try {
+      const userResult = await createUser(data.email, data.password);
+      await profileUpdate(data.name, data.photoUrl);
+
+      const info = {
+        name: data.name,
+        email: data.email,
+      };
+
+      const res = await axiosPublic.post("/user/userInfo", info);
+
+      if (res.data.insertedId) {
+        Swal.fire({
+          text: "Created account successfully",
+          icon: "success",
+        });
+        reset();
+        navigate("/", { replace: true });
+      }
+    } catch (error) {
+      console.error("Error during form submission:", error);
+    }
   };
 
   // const handleSingUp = (e) => {
@@ -69,7 +76,7 @@ const SingUp = () => {
             </div>
             <div className="card w-1/2 py-5 px-4  ">
               <h2 className="text-3xl font-bold text-center">Sing Up</h2>
-              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body py-4">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Name</span>
@@ -201,6 +208,7 @@ const SingUp = () => {
                   <p>Or sing in with</p>
                 </div>
               </form>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>

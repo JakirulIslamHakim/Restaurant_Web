@@ -12,12 +12,13 @@ import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Component/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { loginUser } = useAuth();
   const location = useLocation();
-  const goTo = location?.state?.form?.pathname || "/";
+  const goTo = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const {
     register,
@@ -84,7 +85,7 @@ const Login = () => {
             </div>
             <div className="card w-1/2 py-5 px-4  ">
               <h2 className="text-3xl font-bold text-center">Login</h2>
-              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body py-4">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -142,6 +143,7 @@ const Login = () => {
                 </div>
                 <div className="form-control mt-6">
                   <button
+                    // TODO : when full web complete then disabled comment out
                     // disabled={disabled}
                     className="btn btn-primary text-base font-bold border-none bg-[#d19f54b5]  hover:bg-[#D1A054]"
                   >
@@ -164,6 +166,7 @@ const Login = () => {
                   <p>Or sing in with</p>
                 </div>
               </form>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>
