@@ -9,7 +9,15 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const OurShop = () => {
-  const [, , , dessert, pizza, salad, soup, drinks] = useMenu();
+  const [menu] = useMenu();
+
+  // const todaysOffered = menu.filter((items) => items.category === "offered");
+  const dessert = menu.filter((items) => items.category === "dessert");
+  const pizza = menu.filter((items) => items.category === "pizza");
+  const salad = menu.filter((items) => items.category === "salad");
+  const soup = menu.filter((items) => items.category === "soup");
+  const drinks = menu.filter((items) => items.category === "drinks");
+
   const categories = ["salads", "pizza", "soups", "desserts", "drinks"];
   const { category } = useParams();
   const initialIndex = categories.indexOf(category);
